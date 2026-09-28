@@ -1,0 +1,32 @@
+{
+  "name": "skill-doctor",
+  "version": "0.2.0",
+  "description": "Use when: user asks to check, verify, repair, or audit a skill.",
+  "inputs": [
+    {
+      "name": "query",
+      "type": "string",
+      "required": true,
+      "description": "本地 Skill 目录名",
+      "example": "rag-blueprint"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "result",
+      "type": "text",
+      "description": "真实五项检查的 JSON 文本，供报告节点使用"
+    }
+  ],
+  "resources": {
+    "gpu": "none",
+    "model": "none (deterministic checks)",
+    "dependencies": []
+  },
+  "use_when": [
+    "检查 / 验证 / 修复 / 审计 Skill 健康"
+  ],
+  "not_for": [
+    "执行具体业务分析或内容生成"
+  ]
+}

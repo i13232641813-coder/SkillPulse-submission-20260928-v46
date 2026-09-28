@@ -1,0 +1,12 @@
+{
+  "tasks": [{"id": "t1", "negative": true}],
+  "verdict": "PASS",
+  "smoke_cases": [
+    {
+      "id": "grounding-mock",
+      "inputs": {"query": "red car"},
+      "expected_output_keys": ["boxes", "image"],
+      "expected_equals": {"image": "mock://grounding.png"}
+    }
+  ]
+}

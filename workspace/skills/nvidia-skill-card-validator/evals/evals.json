@@ -1,0 +1,13 @@
+{
+  "smoke_cases": [
+    {
+      "id": "clean-card-markers",
+      "inputs": {"card": "# Skill Card\n\n## Description / Use Case\nReviewed example card.\n"},
+      "expected_output_keys": ["validation", "source_commit"],
+      "expected_equals": {
+        "validation": "PASS",
+        "source_commit": "d8519c57da6db5d9bea274ec1724a4a7a56a3dee"
+      }
+    }
+  ]
+}

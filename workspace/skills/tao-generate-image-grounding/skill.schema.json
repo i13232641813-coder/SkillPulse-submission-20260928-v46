@@ -1,0 +1,38 @@
+{
+  "name": "tao-generate-image-grounding",
+  "version": "0.1.0",
+  "description": "Use when: user asks to locate objects with a caption.",
+  "inputs": [
+    {
+      "name": "query",
+      "type": "string",
+      "required": true,
+      "description": "图像中需要定位的目标描述",
+      "example": "red car"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "boxes",
+      "type": "json",
+      "description": "目标检测框演示数据"
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "description": "演示标注图引用"
+    }
+  ],
+  "resources": {
+    "gpu": "optional",
+    "model": "mock only",
+    "dependencies": []
+  },
+  "use_when": [
+    "图像目标定位",
+    "目标框生成与语言描述"
+  ],
+  "not_for": [
+    "人脸身份识别"
+  ]
+}

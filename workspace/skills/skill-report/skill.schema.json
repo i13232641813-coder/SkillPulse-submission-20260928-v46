@@ -1,0 +1,31 @@
+{
+  "name": "skill-report",
+  "version": "0.1.0",
+  "description": "Use when a local SkillPulse health result needs a readable evidence report.",
+  "inputs": [
+    {
+      "name": "result",
+      "type": "text",
+      "required": true,
+      "description": "skill-doctor 返回的五项检查 JSON 文本"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "report",
+      "type": "text",
+      "description": "带检查证据与限制声明的 Markdown 报告"
+    }
+  ],
+  "resources": {
+    "gpu": "none",
+    "model": "none (deterministic formatting)",
+    "dependencies": []
+  },
+  "use_when": [
+    "把检查结果汇总为合规 / 审计报告"
+  ],
+  "not_for": [
+    "缺少前置检查输入时单独运行"
+  ]
+}

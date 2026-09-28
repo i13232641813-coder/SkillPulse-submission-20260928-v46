@@ -1,0 +1,36 @@
+{
+  "name": "nvidia-skill-card-validator",
+  "version": "0.1.0",
+  "description": "Validate a Skill Card for unresolved review markers using one fixed upstream NVIDIA script action in a bounded DGX container.",
+  "inputs": [
+    {
+      "name": "card",
+      "type": "text",
+      "required": true,
+      "description": "待检查的 Skill Card Markdown 文本；最多 32 KiB"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "validation",
+      "type": "text",
+      "description": "PASS 表示没有遗留 VERIFY/SELECT 标记；不代表合规或安全认证"
+    },
+    {
+      "name": "source_commit",
+      "type": "string",
+      "description": "实际固定的上游 Git 提交"
+    }
+  ],
+  "resources": {
+    "gpu": "none",
+    "model": "none (fixed deterministic validator)",
+    "dependencies": []
+  },
+  "use_when": [
+    "按固定提交校验 NVIDIA skill-card 脚本"
+  ],
+  "not_for": [
+    "通用 Skill 认证或安全合规认证"
+  ]
+}

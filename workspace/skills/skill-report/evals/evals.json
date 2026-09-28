@@ -1,0 +1,8 @@
+{
+  "smoke_cases": [{
+    "id": "format-five-checks",
+    "inputs": {"result": "{\"skill\":\"sample-skill\",\"version\":\"0.1.0\",\"status\":\"UNHEALTHY\",\"risk\":\"HIGH\",\"checks\":[{\"name\":\"Catalog\",\"status\":\"PASS\",\"detail\":\"schema parsed\"},{\"name\":\"Scanned\",\"status\":\"FAIL\",\"detail\":\"test finding\"},{\"name\":\"Signed\",\"status\":\"FAIL\",\"detail\":\"no allowlist\"},{\"name\":\"Evaluated\",\"status\":\"FAIL\",\"detail\":\"not run\"},{\"name\":\"Documented\",\"status\":\"PASS\",\"detail\":\"present\"}]}"},
+    "expected_output_keys": ["report"],
+    "expected_contains": {"report": "Scanned：FAIL"}
+  }]
+}

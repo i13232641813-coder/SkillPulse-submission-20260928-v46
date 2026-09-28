@@ -1,0 +1,107 @@
+{
+  "title": "SkillPulse Skill Schema",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "inputs",
+    "outputs"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "string",
+              "image",
+              "json",
+              "file",
+              "text"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "string",
+              "image",
+              "json",
+              "file",
+              "text"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "gpu": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "description": {
+      "type": "string"
+    },
+    "use_when": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "触发条件（渐进披露的轻量元数据）：Agent 命中这些场景才加载完整 Skill 正文"
+    },
+    "not_for": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "负向触发条件：这些场景不应调用该 Skill"
+    }
+  }
+}

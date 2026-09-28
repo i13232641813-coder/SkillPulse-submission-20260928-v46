@@ -1,0 +1,12 @@
+{
+  "tasks": [{"id": "t1", "negative": true}],
+  "verdict": "PASS",
+  "smoke_cases": [
+    {
+      "id": "rag-question",
+      "inputs": {"query": "how to deploy a local knowledge base?"},
+      "expected_output_keys": ["answer"],
+      "expected_contains": {"answer": "how to deploy a local knowledge base?"}
+    }
+  ]
+}

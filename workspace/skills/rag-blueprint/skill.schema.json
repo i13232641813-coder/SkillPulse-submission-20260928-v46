@@ -1,0 +1,40 @@
+{
+  "name": "rag-blueprint",
+  "version": "0.1.0",
+  "description": "Use when: user asks to deploy an internal RAG service with guardrails.",
+  "inputs": [
+    {
+      "name": "query",
+      "type": "string",
+      "required": true,
+      "description": "用户要检索或回答的问题",
+      "example": "如何部署内部知识库？"
+    },
+    {
+      "name": "context",
+      "type": "json",
+      "required": false,
+      "description": "可选的检索上下文",
+      "example": {}
+    }
+  ],
+  "outputs": [
+    {
+      "name": "answer",
+      "type": "text",
+      "description": "基于输入问题生成的演示回答"
+    }
+  ],
+  "resources": {
+    "gpu": "optional",
+    "model": "none (mock runner)",
+    "dependencies": []
+  },
+  "use_when": [
+    "内部知识库检索问答",
+    "RAG 流程搭建与检索"
+  ],
+  "not_for": [
+    "需要实时联网的最新事实检索"
+  ]
+}

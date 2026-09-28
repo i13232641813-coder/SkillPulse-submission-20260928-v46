@@ -1,0 +1,12 @@
+{
+  "tasks": [{"id": "t1", "negative": true}],
+  "verdict": "PASS",
+  "smoke_cases": [
+    {
+      "id": "doctor-rag-blueprint",
+      "inputs": {"query": "rag-blueprint"},
+      "expected_output_keys": ["result"],
+      "expected_contains": {"result": "\"skill\": \"rag-blueprint\""}
+    }
+  ]
+}
