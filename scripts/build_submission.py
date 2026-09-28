@@ -52,7 +52,7 @@ def package_files():
 
 
 def main():
-    output = ROOT / 'dist' / 'SkillPulse-submission-20260928-v46.zip'
+    output = ROOT / 'dist' / 'SkillPulse-submission-20260928-v48.zip'
     if output.exists():
         raise RuntimeError('提交包已存在；请先人工确认版本，不自动覆盖')
     files = package_files()

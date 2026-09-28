@@ -74,7 +74,7 @@ bash start.sh
 - `workspace/skills/`：演示用 skill 目录
 - `workspace/outbox/reports/`：检查报告输出目录
 - `scripts/http_smoke.py`：隔离的 HTTP 端到端验收，不使用真实账号或历史运行数据
-- `evidence/dgx-spark-cloud-run-20260926.json`：赛事云节点的实测记录；含 NVIDIA GB10 与 CUDA 运算结果
+- 赛事云节点的实测记录（含 NVIDIA GB10 与 CUDA 运算结果、节点地址等）**不随源码公开**；比赛如需展示，按赛事要求脱敏后单独提交。
 
 ## 架构、Skill 设计与本地算力
 
@@ -121,7 +121,7 @@ Windows 或未准备镜像的 Linux 环境会显示 `UNHEALTHY` 并阻止载入�
 
 ## 技术栈说明（NVIDIA SDK / 模型）
 
-- **NVIDIA / DGX**：NVIDIA DGX Spark（GB10）云节点实测；CUDA Toolkit 13.0 环境完成真实 CUDA 前向推理与 HTTP 检索（证据见 `evidence/` 与 `SUBMISSION-EVIDENCE.md`）。
+- **NVIDIA / DGX**：NVIDIA DGX Spark（GB10）云节点实测；CUDA Toolkit 13.0 环境完成真实 CUDA 前向推理与 HTTP 检索（实测证据含节点地址，不随源码公开；验收记录见 `SUBMISSION-EVIDENCE.md`）。
 - **NVIDIA 相关资产**：上游目录 NVIDIA/skills（固定提交）中的单一脚本 `validate_submission.py` 适配为受控第三节点（`nvidia-skill-card-validator`），按固定 SHA-256 与容器镜像 ID 校验后执行；不是完整 NVIDIA Skill，也不代表 NVIDIA 背书。
 - **StepFun 阶跃星辰**：`step-3.7-flash` 用于需求解析与 Skill 推荐（可选，经 `stepfun.env` 配置，中国区 `api.stepfun.com` / 全球区 `api.stepfun.ai`）。
 - **模型（语义排序，可选）**：`intfloat/multilingual-e5-small`（ModelScope 固定 revision），DGX 本地 CUDA 推理，仅对已登记本地 Skill 简介排序。

@@ -1111,12 +1111,13 @@ def llm_github_search(req: ChatRequest):
     body = {
         'model': req.model or 'step-3.7-flash',
         'messages': [
-            {'role': 'system', 'content': '你是 GitHub Skill 搜索助手。根据用户任务，直接输出 1-3 个适合在 GitHub 搜索 agent skill 仓库的英文搜索词（短关键词组合）。只输出一个 JSON 字符串数组，例如 ["skill health check"]。禁止任何分析、解释、思考过程、Markdown 或其他文字；没有思路就输出 []。'},
+            {'role': 'system', 'content': '你是 GitHub Skill 搜索助手。根据用户任务，直接输出 1-3 个适合在 GitHub 搜索 agent skill 仓库的英文搜索词（短关键词组合）。第一行就必须是 JSON 字符串数组，例如 ["ppt generation"]。禁止任何分析、解释、思考过程、Markdown 或其他文字；禁止以 Got it、Let、First、Here 等词开头；没有思路就输出 []。'},
             {'role': 'user', 'content': task}
         ],
         'stream': False,
-        'temperature': 0.3,
-        'max_tokens': 500,
+        'temperature': 0.2,
+        'thinking': {'type': 'disabled'},
+        'max_tokens': 1200,
     }
     data = json.dumps(body, ensure_ascii=False).encode('utf-8')
     req_obj = urllib.request.Request(
@@ -1144,21 +1145,24 @@ def llm_github_search(req: ChatRequest):
     raw_text = content.strip()
     if raw_text.startswith('```'):
         raw_text = re.sub(r'^```(?:json)?\s*|\s*```$', '', raw_text)
+    queries = []
     try:
         queries = json.loads(raw_text)
     except Exception:
-        start_idx = raw_text.find('[')
-        end_idx = raw_text.rfind(']')
-        try:
-            queries = json.loads(raw_text[start_idx:end_idx + 1]) if start_idx != -1 and end_idx != -1 else []
-        except Exception:
-            queries = []
+        for arr in reversed(re.findall(r'\[[^\]]*\]', raw_text)):
+            try:
+                parsed = json.loads(arr)
+                if isinstance(parsed, list):
+                    queries = parsed
+                    break
+            except Exception:
+                continue
     if not isinstance(queries, list):
         queries = []
     queries = [q.strip() for q in queries if isinstance(q, str) and q.strip()][:3]
     if not queries:
         return {'items': [], 'raw': content,
-                'parse_hint': 'LLM 未生成有效搜索词。原始回复：' + (content.strip()[:200] or '空'),
+                'parse_hint': 'LLM 未生成有效搜索词。原始回复：' + (content.strip()[:300] or '空'),
                 'results': []}
     repos, seen, warnings = [], set(), []
     for q in queries:
